@@ -24,9 +24,12 @@ body {
 
 .cover-container {
   max-width: 42em;
+  min-height: 100%;
 }
 
-
+.full-view {
+  min-height: 100%;
+}
 /*
  * Header
  */
