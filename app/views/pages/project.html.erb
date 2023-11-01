@@ -24,26 +24,27 @@
           <div class="col">
             <div class="card shadow-sm">
               <%# <svg class="bd-placeholder-img card-img-top" width="100%" height="225" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: Thumbnail" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="#55595c"/><text x="50%" y="50%" fill="#eceeef" dy=".3em">Thumbnail</text></svg> %>
-              <%= cl_image_tag photo.photo.key, crop: :fill, class: "bd-placeholder-img card-img-top", style: "width: 100; height: 225", fetch_format: "auto"%>
+              <%#= cl_image_tag photo.photo.key, crop: :fill, class: "bd-placeholder-img card-img-top", style: "width: 100; height: 225", fetch_format: "auto"%>
+              <%= cl_image_tag photo.photo.key, crop: :fill, class: "bd-placeholder-img card-img-top", style: "width: 100%; height: 225px; object-fit: cover;", fetch_format: "auto" %>
 
               <div class="card-body">
                 <p class="card-text"><%= photo.title %></p>
                 <p class="card-text"><%= photo.body %></p>
                 <div class="d-flex justify-content-between align-items-center">
                   <div class="btn-group">
-                    <button type="button" class="btn btn-sm btn-outline-secondary" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                    <button type="button" class="btn btn-sm btn-outline-secondary" data-bs-toggle="modal" data-bs-target="#exampleModal<%= photo.id %>">
                       View Image
                     </button>
                     <!-- Modal -->
-                    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                    <div class="modal fade" id="exampleModal<%= photo.id %>" tabindex="-1" aria-labelledby="exampleModalLabel<%= photo.id %>" aria-hidden="true">
                       <div class="modal-dialog modal-fullscreen">
                         <div class="modal-content">
                           <div class="modal-header">
-                            <h1 class="modal-title fs-5" id="exampleModalLabel"><%= photo.title %></h1>
+                            <h1 class="modal-title fs-5" id="exampleModalLabel<%= photo.id %>"><%= photo.title %></h1>
                             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                           </div>
                           <div class="modal-body">
-                            <%= cl_image_tag photo.photo.key, crop: :fill, class: "bd-placeholder-img card-img-top", style: "width: 100%; height: 100%", fetch_format: "auto"%>
+                            <%= cl_image_tag photo.photo.key, crop: :fill, class: "bd-placeholder-img card-img-top", style: "min-width: 100%; min-height: 100%", fetch_format: "auto"%>
                           </div>
                           <div class="modal-footer">
                             <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>

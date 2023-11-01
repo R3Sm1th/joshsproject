@@ -18,7 +18,7 @@
 
 
 <div class="cover-container d-flex w-100 p-3 mx-auto flex-column">
-<header class="mb-auto">
+<header class="">
   <div>
     <h3 class="float-md-start mb-0">Seaside</h3>
     <nav class="nav nav-masthead justify-content-center float-md-end">
@@ -32,25 +32,29 @@
   </div>
 </header>
 
-<div id="carouselExampleIndicators" class="carousel slide" data-bs-ride="true">
-  <div class="carousel-indicators">
-    <% @photos.each_with_index do |photo, index| %>
-      <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="<%= index %>" class="<%= index == 0 ? 'active' : '' %>" aria-current="<%= index == 0 %>" aria-label="Slide <%= index + 1 %>"></button>
-    <% end %>
-  </div>
-  <div class="carousel-inner">
-    <% @photos.each_with_index do |photo, index| %>
-      <div class="carousel-item <%= index == 0 ? 'active' : '' %>">
-        <%= cl_image_tag photo.photo.key, crop: :fill, class: "d-block w-100", alt: photo.title %>
+<div class="d-flex justify-content-center align-items-center" style="min-height: 80vh">
+  <div class="carousel-container">
+    <div id="carouselExampleIndicators" class="carousel slide" data-bs-ride="true" style="max-height: 80vh">
+      <div class="carousel-indicators">
+        <% @photos.each_with_index do |photo, index| %>
+          <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="<%= index %>" class="<%= index == 0 ? 'active' : '' %>" aria-current="<%= index == 0 %>" aria-label="Slide <%= index + 1 %>"></button>
+        <% end %>
       </div>
-    <% end %>
+      <div class="carousel-inner">
+        <% @photos.each_with_index do |photo, index| %>
+          <div class="carousel-item <%= index == 0 ? 'active' : '' %>">
+            <%= cl_image_tag photo.photo.key, crop: :fill, alt: photo.title, style: "max-height: 80%; max-width: 80%;"%>
+          </div>
+        <% end %>
+      </div>
+      <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="prev">
+        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Previous</span>
+      </button>
+      <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="next">
+        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Next</span>
+      </button>
+    </div>
   </div>
-  <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="prev">
-    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-    <span class="visually-hidden">Previous</span>
-  </button>
-  <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="next">
-    <span class="carousel-control-next-icon" aria-hidden="true"></span>
-    <span class="visually-hidden">Next</span>
-  </button>
 </div>
