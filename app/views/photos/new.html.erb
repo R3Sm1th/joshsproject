@@ -1,9 +1,8 @@
-<h1>Add a Photo</h1>
+<h1 style="text-align: center; border-top: 2px solid #ccc; padding-top: 10px;">Add a Photo</h1>
+<div style="text-align: center;">
+  <%= link_to "Back to Project", project_path %>
+</div>
 
 <%= render "form", photo: @photo %>
 
 <br>
-
-<div>
-  <%= link_to "Back to Project", project_path %>
-</div>

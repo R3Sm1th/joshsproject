@@ -6,8 +6,8 @@
         <h1 class="fw-light">Seaside</h1>
         <p class="lead text-body-secondary">Something short and leading about the collection below—its contents, the creator, etc. Make it short and sweet, but not too short so folks don’t simply skip over it entirely.</p>
         <p>
-          <%= link_to "Back to Homepage", root_path, class:"btn btn-secondary my-2" %>
-          <%= link_to "Slideshow", slide_path, class:"btn btn-primary my-2" %>
+          <%= link_to "Back to Homepage", root_path, class:"btn btn-lg btn-light fw-bold border-white bg-white" %>
+          <%= link_to "Slideshow", slide_path, class:"btn btn-lg btn-light fw-bold border-white bg-white" %>
         </p>
       </div>
     </div>
@@ -15,6 +15,7 @@
   <div>
     <% if user_signed_in? %>
       <%= button_to "New Photo", new_photo_path, method: :get, class: "btn btn-secondary my-2" %>
+      <%= button_to "Sign Out", destroy_user_session_path, method: :delete, class: "btn btn-secondary my-2" %>
     <% end %>
   </div>
   <div class="album py-5 bg-body-tertiary">
@@ -35,6 +36,10 @@
                     <button type="button" class="btn btn-sm btn-outline-secondary" data-bs-toggle="modal" data-bs-target="#exampleModal<%= photo.id %>">
                       View Image
                     </button>
+                      <% if user_signed_in? %>
+                        <%= button_to "Edit Photo", edit_photo_path(photo), method: :get, class: "btn btn-sm btn-outline-secondary" %>
+                        <%= button_to "Delete", photo_path(photo), method: :delete, class: "btn btn-sm btn-outline-secondary" %>
+                      <% end %>
                     <!-- Modal -->
                     <div class="modal fade" id="exampleModal<%= photo.id %>" tabindex="-1" aria-labelledby="exampleModalLabel<%= photo.id %>" aria-hidden="true">
                       <div class="modal-dialog modal-fullscreen">
@@ -44,7 +49,7 @@
                             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                           </div>
                           <div class="modal-body">
-                            <%= cl_image_tag photo.photo.key, crop: :fill, class: "bd-placeholder-img card-img-top", style: "min-width: 100%; min-height: 100%", fetch_format: "auto"%>
+                            <%= cl_image_tag photo.photo.key, crop: :fill, class: "bd-placeholder-img card-img-top", style: "img-fluid", fetch_format: "auto"%>
                           </div>
                           <div class="modal-footer">
                             <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>

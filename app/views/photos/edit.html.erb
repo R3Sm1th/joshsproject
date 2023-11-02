@@ -1,11 +1,6 @@
-<h1>Editing photo</h1>
+<h1 style="text-align: center; border-top: 2px solid #ccc; padding-top: 10px;">Edit Photo</h1>
+<div style="text-align: center;">
+  <%= link_to "Back to Project", project_path %>
+</div>
 
 <%= render "form", photo: @photo %>
-
-<br>
-
-<div>
-  <%= link_to "Show this photo", @photo %> |
-  <%= link_to "Back to photos", photos_path %> |
-  <%= link_to "Back to project", project_path %>
-</div>

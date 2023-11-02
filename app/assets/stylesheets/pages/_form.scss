@@ -1,0 +1,17 @@
+.full-height-container {
+  height: 100vh; /* 100% of the viewport height */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* Style the centered box */
+.centered-box {
+  background-color: #f7f7f7; /* Set your desired background color */
+  padding: 20px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
+  width: 80%; /* Adjust the width as needed */
+  min-height: 70%;
+}

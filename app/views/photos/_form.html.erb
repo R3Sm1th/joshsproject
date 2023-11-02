@@ -1,26 +1,36 @@
+<div class="full-height-container">
+  <div class="centered-box">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-6 offset-md-3">
+          <%= simple_form_for(@photo, html: { class: 'form-horizontal' }) do |f| %>
+            <%= f.error_notification %>
+            <%= f.error_notification message: f.object.errors[:base].to_sentence if f.object.errors[:base].present? %>
 
-<%= simple_form_for(@photo) do |f| %>
-  <%= f.error_notification %>
-  <%= f.error_notification message: f.object.errors[:base].to_sentence if f.object.errors[:base].present? %>
+            <div class="form-inputs">
+              <%= f.input :title, label: 'Title' %>
+              <%= f.input :body, label: 'Description' %>
+              <div class="form-group">
+                <div class="col-sm-10">
+                  <%= f.input :photo, as: :file %>
+                  <%# If you want to display the current photo, you can uncomment this section %>
+                  <% if @photo.photo.present? %>
+                  <div id="<%= dom_id(@photo, :photo)%>">
+                  <%= image_tag @photo.photo.url, style: "max-width: 100%" %>
+                  </div>
+                  <% end %>
+                </div>
+              </div>
+            </div>
 
-  <div class="form-inputs">
-    <%= f.input :title %>
-    <%= f.input :body %>
-    <div>
-    <%= f.input :photo %>
-
-    <%# if photo.present? %>
-      <%# <div id="<%= dom_id(photo, :photo) %>
-        <%#= image_tag photo.photo, style: "width: 200px" %>
-        <%#= link_to "Remove Image", photo_path(photo), data: { turbo_method: :delete, turbo_confirm: "Sure you want to delete?"} %>
-      <%# </div> %>
-    <%# end %>
-
+            <div class="form-actions">
+              <div class="col-sm-offset-2 col-sm-10">
+                <%= f.button :submit, class: 'btn btn-primary' %>
+              </div>
+            </div>
+          <% end %>
+        </div>
+      </div>
+    </div>
   </div>
-  <div>
-  </div>
-
-  <div class="form-actions">
-    <%= f.button :submit %>
-  </div>
-<% end %>
+</div>

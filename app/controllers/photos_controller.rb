@@ -1,6 +1,6 @@
 class PhotosController < ApplicationController
   before_action :set_photo, only: %i[ show edit update destroy ]
-
+  before_action :authenticate_user!, only: %i[ edit update destroy new create]
   # GET /photos or /photos.json
   def index
     @photos = Photo.all
@@ -25,8 +25,8 @@ class PhotosController < ApplicationController
 
     respond_to do |format|
       if @photo.save
-        format.html { redirect_to photo_url(@photo), notice: "Photo was successfully created." }
-        format.json { render :show, status: :created, location: @photo }
+        format.html { redirect_to project_url, notice: "Photo was successfully created." }
+        format.json { render json: { project_url: project_url }, status: :created }
       else
         format.html { render :new, status: :unprocessable_entity }
         format.json { render json: @photo.errors, status: :unprocessable_entity }
@@ -52,7 +52,7 @@ class PhotosController < ApplicationController
     @photo.destroy
 
     respond_to do |format|
-      format.html { redirect_to photos_url, notice: "Photo was successfully destroyed." }
+      format.html { redirect_to project_url, notice: "Photo was successfully destroyed." }
       format.json { head :no_content }
     end
   end
